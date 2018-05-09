@@ -1,0 +1,5 @@
+welcome: 'welcome to the movie rating checker'
+
+welcome_help: 'ask either, rotten tomatoes, I.M.D.B, or metacritic for a movie title'
+
+success_statement: 'the {{ site }} score for {{ title }} is {{ score }}'

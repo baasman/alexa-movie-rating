@@ -1,0 +1,64 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "movie rating",
+            "intents": [
+                {
+                    "name": "RatingIntent",
+                    "slots": [
+                        {
+                          "name": "title",
+                          "type": "AMAZON.Movie"
+                        },
+                        {
+                          "name": "year",
+                          "type": "AMAZON.DATE"
+                        },
+                        {
+                          "name": "site",
+                          "type": "REVIEWSITE"
+                        }
+                    ]
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "slots": [],
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "slots": [],
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "slots": [],
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "REVIEWSITE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "rotten tomatoes"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "metacritic"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "i.m.d.b"
+                            }
+                        }
+
+                    ]
+                }
+            ]
+        }
+    }
+}
