@@ -1,10 +1,10 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "movie rating",
+            "invocationName": "streaming buddy",
             "intents": [
                 {
-                    "name": "RatingIntent",
+                    "name": "MovieRatingIntent",
                     "slots": [
                         {
                           "name": "title",
@@ -18,6 +18,54 @@
                           "name": "site",
                           "type": "REVIEWSITE"
                         }
+                    ],
+                    "samples": [
+                        "ask {site} for the movie {title}",
+                        "ask {site} for the movie {title} from {year}"
+                    ]
+                },
+                {
+                    "name": "SeriesRatingIntent",
+                    "slots": 
+                        {
+                          "name": "tv_title",
+                          "type": "AMAZON.TVSeries"
+                        },
+                        {
+                          "name": "year",
+                          "type": "AMAZON.DATE"
+                        }
+                    ],
+                    "samples": [
+                        "ask i.m.d.b for the series {tv_title}",
+                        "ask i.m.d.b for the series {tv_title} from {year}"
+                    ]
+                },
+                {
+                    "name": "ActorIntent",
+                    "slots": [
+                        {
+                          "name": "title",
+                          "type": "AMAZON.Movie"
+                        }
+                    ],
+                    "samples": [
+                        "who acts in {title}",
+                        "who are the actors in {title}",
+                        "actors {title}"
+                    ]
+                },
+                {
+                    "name": "BoxIntent",
+                    "slots": [
+                        {
+                          "name": "title",
+                          "type": "AMAZON.Movie"
+                        }
+                    ],
+                    "samples": [
+                        "what is the box office for {title}",
+                        "box office {title}"
                     ]
                 },
                 {

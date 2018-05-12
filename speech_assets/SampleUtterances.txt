@@ -1,2 +1,16 @@
-ask {site} for {title}
-ask {site} for {title} from {year}
+movie rating:
+ask {site} for the movie {title}
+ask {site} for the movie {title} from {year}
+
+series rating:
+ask i.m.d.b for the series {tv_title}
+ask i.m.d.b for the series {tv_title} from {year}
+
+actor:
+who acts in {title}
+who are the actors in {title}
+actors {title}
+
+box office: 
+what is the box office for {title}
+box office {title}

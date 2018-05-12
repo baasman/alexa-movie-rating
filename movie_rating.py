@@ -30,9 +30,9 @@ def session_ended():
     app.logger.info('session ended')
     return "{}", 200
 
-@ask.intent('RatingIntent', convert={'site': str, 'title': str, 'year': str},
+@ask.intent('MovieRatingIntent', convert={'site': str, 'title': str, 'year': str},
             default={'year': None, 'title': None, 'site': 'imdb'})
-def get_rating(site, title, year):
+def get_movie_rating(site, title, year):
     client = OMDBClient(apikey=capp.config['API_KEY'])
     app.logger.info('rating asked for {} from {}'.format(title, site))
     site = site.translate({ord(c): None for c in string.punctuation}).lower()
@@ -45,6 +45,7 @@ def get_rating(site, title, year):
         app.logger.error('no parameters found')
         return question('Sorry, can you repeat your question, I did not',
                         'understand')
+    req['type'] = 'movie'
     res = client.request(**req).json()
     app.logger.info(res)
     response = {}
@@ -56,9 +57,76 @@ def get_rating(site, title, year):
         if 'Meta' in rating['Source']:
             response['metacritic'] = rating['Value']
     app.logger.info(response)
-    return statement(render_template('success_statement', title=res['Title'],
+    return statement(render_template('movie_rating_statement', title=res['Title'],
                                      score=response[site], site=site))
 
+@ask.intent('SeriesRatingIntent', convert={'tv_title': str, 'year': str},
+            default={'year': None, 'tv_title': None})
+def get_series_rating(tv_title, year):
+    app.logger.info(tv_title, year)
+    client = OMDBClient(apikey=capp.config['API_KEY'])
+    app.logger.info('rating asked for {}'.format(tv_title))
+    req = {}
+    if tv_title is not None:
+        req['t'] = tv_title
+    if year is not None:
+        req['y'] = year
+    if len(req) == 0:
+        app.logger.error('no parameters found')
+        return question('Sorry, can you repeat your question, I did not',
+                        'understand')
+    req['type'] = 'series'
+    res = client.request(**req).json()
+    app.logger.info(res)
+    response = {}
+    for rating in res['Ratings']:
+        if 'Internet' in rating['Source']:
+            response['imdb'] = rating['Value']
+        else:
+            return statement(render_template('unable to find rating'))
+    app.logger.info(response)
+    return statement(render_template('series_rating_statement', title=res['Title'],
+                                     score=response['imdb']))
+
+@ask.intent('ActorIntent', convert={'title': str},
+            default={'title': None})
+def get_actors(title):
+    client = OMDBClient(apikey=capp.config['API_KEY'])
+    app.logger.info('rating asked for {} from {}'.format(title, site))
+    req = {}
+    if title is not None:
+        req['t'] = title
+    if len(req) == 0:
+        app.logger.error('no parameters found')
+        return question('Sorry, can you repeat your question, I did not',
+                        'understand')
+    res = client.request(**req).json()
+    app.logger.info(res)
+    response['actors'] = res['Actors']
+    app.logger.info(response)
+    return statement(render_template('actor_statement', title=res['Title'],
+                                     actors=response['actors']))
+
+
+@ask.intent('BoxIntent', convert={'title': str},
+            default={'title': None})
+def get_box_office(title):
+    client = OMDBClient(apikey=capp.config['API_KEY'])
+    app.logger.info('box office asked for {} from {}'.format(title, site))
+    req = {}
+    if title is not None:
+        req['t'] = title
+    if len(req) == 0:
+        app.logger.error('no parameters found')
+        return question('Sorry, can you repeat your question, I did not',
+                        'understand')
+    res = client.request(**req).json()
+    app.logger.info(res)
+    response = {}
+    response['box_office'] = res['BoxOffice']
+    app.logger.info(response)
+    return statement(render_template('box_office', title=res['Title'],
+                                     box_office=response['box_office']))
 if __name__ == '__main__':
     app.run(port=5000)
 

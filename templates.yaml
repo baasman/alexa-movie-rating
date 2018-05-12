@@ -1,5 +1,13 @@
-welcome: 'welcome to the movie rating checker'
+welcome: 'welcome to streaming buddy'
 
 welcome_help: 'ask either, rotten tomatoes, I.M.D.B, or metacritic for a movie title'
 
-success_statement: 'the {{ site }} score for {{ title }} is {{ score }}'
+movie_rating_statement: 'the {{ site }} score for the movie {{ title }} is {{ score }}'
+
+series_rating_statement: 'the {{ site }} score for the series {{ title }} is {{ score }}'
+
+actor_statement: 'the actors for the movie {{ title }} are {{ actors }}'
+
+box_office: 'the box office for the movie {{ title }} is {{ box_office }}'
+
+not_found: 'the rating for this movie cannot be found'
