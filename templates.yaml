@@ -1,12 +1,18 @@
 welcome: 'welcome to streaming buddy'
 
+welcome_back: 'welcome back to streaming buddy'
+
 welcome_help: 'ask either, rotten tomatoes, I.M.D.B, or metacritic for a movie title'
 
 movie_rating_statement: 'the {{ site }} score for the movie {{ title }} is {{ score }}'
 
+series_rating_statement_twin_peaks: "That's a damn fine series, the {{ site }} score for the series {{ title }} is {{ score }}"
+
 series_rating_statement: 'the {{ site }} score for the series {{ title }} is {{ score }}'
 
-actor_statement: 'the actors for the movie {{ title }} are {{ actors }}'
+actor_movie_statement: 'the actors for the movie {{ title }} are {{ actors }}'
+
+actor_series_statement: 'the actors for the series {{ title }} are {{ actors }}'
 
 box_office: 'the box office for the movie {{ title }} is {{ box_office }}'
 

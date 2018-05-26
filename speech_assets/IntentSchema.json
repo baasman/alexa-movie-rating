@@ -21,12 +21,14 @@
                     ],
                     "samples": [
                         "ask {site} for the movie {title}",
+                        "ask {site} for {title}",
+                        "movie {title}",
                         "ask {site} for the movie {title} from {year}"
                     ]
                 },
                 {
                     "name": "SeriesRatingIntent",
-                    "slots": 
+                    "slots": [
                         {
                           "name": "tv_title",
                           "type": "AMAZON.TVSeries"
@@ -37,12 +39,12 @@
                         }
                     ],
                     "samples": [
-                        "ask i.m.d.b for the series {tv_title}",
-                        "ask i.m.d.b for the series {tv_title} from {year}"
+                        "series {tv_title}",
+                        "television series {tv_title}"
                     ]
                 },
                 {
-                    "name": "ActorIntent",
+                    "name": "ActorMovieIntent",
                     "slots": [
                         {
                           "name": "title",
@@ -50,9 +52,26 @@
                         }
                     ],
                     "samples": [
-                        "who acts in {title}",
+                        "who acts in the movie {title}",
                         "who are the actors in {title}",
-                        "actors {title}"
+                        "actors {title}",
+                        "movie actors {title}",
+                        "actors in {title}"
+                    ]
+                },
+                {
+                    "name": "ActorSeriesIntent",
+                    "slots": [
+                        {
+                          "name": "title",
+                          "type": "AMAZON.Movie"
+                        }
+                    ],
+                    "samples": [
+                        "who acts in the series {title}",
+                        "who are the actors in the series {title}",
+                        "series actors {title}",
+                        "actors in series {title}"
                     ]
                 },
                 {
